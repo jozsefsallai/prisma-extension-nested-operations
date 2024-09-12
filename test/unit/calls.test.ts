@@ -4,7 +4,7 @@ import faker from "faker";
 import { get } from "lodash";
 
 import { withNestedOperations, NestedParams } from "../../src";
-import { relationsByModel } from "../../src/lib/utils/relations";
+import { getRelationsByModel } from "../../src/lib/utils/relations";
 import { LogicalOperator, Modifier } from "../../src/lib/types";
 import { createParams } from "./helpers/createParams";
 
@@ -65,7 +65,7 @@ function getModelRelation<Model extends Prisma.ModelName>(
   model: Model,
   relationName: string
 ): Prisma.DMMF.Field {
-  const modelRelation = relationsByModel[model].find(
+  const modelRelation = getRelationsByModel()[model].find(
     (relation) => relation.name === relationName
   );
   if (!modelRelation) {
