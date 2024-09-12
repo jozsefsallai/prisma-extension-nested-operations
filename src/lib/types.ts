@@ -72,6 +72,7 @@ export type NestedParams<ExtArgs extends Types.Extensions.InternalArgs> = {
   args: any;
   operation: NestedOperation;
   scope?: Scope<ExtArgs>;
+  dmmf?: typeof Prisma.dmmf;
 };
 
 export type ExecuteFunction<

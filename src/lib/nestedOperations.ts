@@ -12,6 +12,7 @@ import {
   stripIdSymbolsFromResult,
   updateResultRelation,
 } from "./utils/results";
+import { setDmmf } from "./utils/dmmf";
 
 type NonNullable<T> = Exclude<T, null | undefined>;
 
@@ -32,6 +33,7 @@ export function withNestedOperations<
 >({
   $rootOperation,
   $allNestedOperations,
+  dmmf
 }: {
   $rootOperation: NonNullable<
     Types.Extensions.DynamicQueryExtensionArgs<
@@ -40,7 +42,12 @@ export function withNestedOperations<
     >["$allModels"]["$allOperations"]
   >;
   $allNestedOperations: (params: NestedParams<ExtArgs>) => Promise<any>;
+  dmmf?: typeof Prisma.dmmf,
 }): typeof $rootOperation {
+  if(!!dmmf) {
+    setDmmf(dmmf);
+  }
+
   return async (rootParams) => {
     let calls: OperationCall<ExtArgs>[] = [];
 
