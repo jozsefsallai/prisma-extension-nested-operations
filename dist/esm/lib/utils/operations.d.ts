@@ -1,0 +1,10 @@
+import { LogicalOperator, Modifier, NestedQueryOperation, NestedReadOperation, NestedWriteOperation } from "../types";
+export declare const queryOperations: NestedQueryOperation[];
+export declare const readOperations: NestedReadOperation[];
+export declare const writeOperations: NestedWriteOperation[];
+export declare const toOneRelationNonListOperations: NestedWriteOperation[];
+export declare function isQueryOperation(action: any): action is NestedQueryOperation;
+export declare function isReadOperation(action: any): action is NestedReadOperation;
+export declare function isWriteOperation(action: any): action is NestedWriteOperation;
+export declare const modifiers: Modifier[];
+export declare const logicalOperators: LogicalOperator[];
